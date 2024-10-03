@@ -1,7 +1,7 @@
+import PaginationButtons from "@/components/pagination-buttons";
 import { SERVICE_URL } from "@/constants/service";
 import { CharactersResponse } from "@/libs/types";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 async function fetchCharacters(slug: string): Promise<CharactersResponse> {
@@ -13,8 +13,6 @@ async function fetchCharacters(slug: string): Promise<CharactersResponse> {
   }
 
   const data = await res.json();
-
-  console.log(data);
   return data;
 }
 
@@ -31,23 +29,20 @@ export default async function Characters({
     notFound();
   }
   return (
-    <div>
-      {characters.results.map((item) => (
-        <div key={item.id}>
-        <Image src={item.image} alt="" width={200} height={200}/>
-        <div>{item.name}</div>
-        </div>
-      ))}
-      {+params.slug !== 1 ? (
-        <Link href={(+params.slug - 1).toString()}>Previous</Link>
-      ) : (
-        <span className="opacity-5">Previous</span>
-      )}
-      {+params.slug !== pageCount ? (
-        <Link href={(+params.slug + 1).toString()}>Next</Link>
-      ) : (
-        <span className="opacity-5">Next</span>
-      )}
-    </div>
+    <section className="container mx-auto">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-y-8 gap-6">
+        {characters.results.map((item) => (
+          <div key={item.id} className="flex items-start border border-red-500">
+            <Image src={item.image} alt="" width={200} height={200} priority/>
+            <div className="flex items-start justify-center flex-col">
+              <span>{item.name}</span>
+              <span>{item.gender}</span>
+              <span>{item.status}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <PaginationButtons params={+params.slug} pageCount={pageCount} />
+    </section>
   );
 }

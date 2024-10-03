@@ -7,6 +7,15 @@ const nextConfig = {
                 hostname: 'rickandmortyapi.com',
             }
         ]
+    },
+    redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/characters/1',
+                permanent: true
+            }
+        ]
     }
 };
 

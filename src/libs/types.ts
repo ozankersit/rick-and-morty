@@ -4,6 +4,7 @@ type Character = {
     gender: string;
     species: string;
     image: string;
+    status: string;
   };
   
   type Info = {
