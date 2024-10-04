@@ -28,7 +28,7 @@ const BackgroundMusic = () => {
   };
 
   return (
-    <div>
+    <div className='container mx-auto'>
       {!isPlaying ? (
         <Image src={"/morty.png"} alt='rick and morty' width={100} height={100} onClick={handlePlayMusic} className='animate-wiggle'/>
       ) : (

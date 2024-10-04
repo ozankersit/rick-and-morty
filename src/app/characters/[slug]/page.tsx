@@ -31,7 +31,6 @@ export default async function Characters({
   }
   return (
     <section className="container mx-auto">
-      <BackgroundMusic/>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-y-8 gap-6">
         {characters.results.map((item) => (
           <div key={item.id} className="flex items-start border border-red-500">
