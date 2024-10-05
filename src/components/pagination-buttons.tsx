@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-
-  
   type Props = {
     params: number;
     pageCount: number;

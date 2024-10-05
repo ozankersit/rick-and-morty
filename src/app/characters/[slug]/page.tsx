@@ -1,9 +1,8 @@
-import BackgroundMusic from "@/components/background-music";
 import PaginationButtons from "@/components/pagination-buttons";
 import { SERVICE_URL } from "@/constants/service";
 import { CharactersResponse } from "@/libs/types";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import CharacterContainer from "./character-container";
 
 async function fetchCharacters(slug: string): Promise<CharactersResponse> {
   const res = await fetch(`${SERVICE_URL}/character/?page=${slug}`, {
@@ -31,18 +30,7 @@ export default async function Characters({
   }
   return (
     <section className="container mx-auto">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-y-8 gap-6">
-        {characters.results.map((item) => (
-          <div key={item.id} className="flex items-start border border-red-500">
-            <Image src={item.image} alt="" width={200} height={200} priority/>
-            <div className="flex items-start justify-center flex-col">
-              <span>{item.name}</span>
-              <span>{item.gender}</span>
-              <span>{item.status}</span>
-            </div>
-          </div>
-        ))}
-      </div>
+      <CharacterContainer characters={characters.results}/>
       <PaginationButtons params={+params.slug} pageCount={pageCount} />
     </section>
   );
