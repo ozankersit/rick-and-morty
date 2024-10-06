@@ -3,6 +3,7 @@ import { SERVICE_URL } from "@/constants/service";
 import { CharactersResponse } from "@/libs/types";
 import { notFound } from "next/navigation";
 import CharacterContainer from "./character-container";
+import SearchInput from "@/components/search-input";
 
 async function fetchCharacters(slug: string): Promise<CharactersResponse> {
   const res = await fetch(`${SERVICE_URL}/character/?page=${slug}`, {
@@ -30,6 +31,7 @@ export default async function Characters({
   }
   return (
     <section className="container mx-auto">
+      <SearchInput/>
       <CharacterContainer characters={characters.results}/>
       <PaginationButtons params={+params.slug} pageCount={pageCount} />
     </section>

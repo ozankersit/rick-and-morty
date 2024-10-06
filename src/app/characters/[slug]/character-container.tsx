@@ -3,6 +3,8 @@ import { Character } from "@/libs/types";
 import Image from "next/image";
 import { useState } from "react";
 import SelectedCharacterContainer from "./selected-character-container";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   characters: Character[];
@@ -12,6 +14,8 @@ export default function CharacterContainer({ characters }: Props) {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null
   );
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search_query")?.toLowerCase() || "";
 
   function handleClick(character: Character) {
     setSelectedCharacter(character);
@@ -21,32 +25,41 @@ export default function CharacterContainer({ characters }: Props) {
     setSelectedCharacter(null);
   }
 
+  const filteredCharacters = characters.filter((character) =>
+    character.name.toLowerCase().includes(searchQuery) || character.species.toLowerCase().includes(searchQuery)
+  );
+
   return (
     <>
       {selectedCharacter ? (
-        <SelectedCharacterContainer closeModal={closeModal} selectedCharacter={selectedCharacter}/>
+        <SelectedCharacterContainer
+          closeModal={closeModal}
+          selectedCharacter={selectedCharacter}
+        />
       ) : null}
 
-      <section className="grid lg:grid-cols-3 md:grid-cols-2 gap-y-8 gap-6">
-        {characters.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-start border border-red-500"
-            onClick={() => handleClick(item)}
-          >
-            <Image
-              src={item.image}
-              alt={item.name}
-              width={200}
-              height={200}
-              priority
-            />
-            <div className="flex items-start justify-center flex-col">
-              <span>{item.name}</span>
-              <span>{item.gender}</span>
-              <span>{item.status}</span>
+      <section className="grid lg:grid-cols-4 md:grid-cols-2 gap-y-8 gap-6">
+        {filteredCharacters.map((item) => (
+          <Link href="#selected-character" key={item.id}>
+            <div
+              className="flex items-start border border-red-500"
+              onClick={() => handleClick(item)}
+            >
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={150}
+                height={150}
+                priority
+              />
+              <div className="flex items-start justify-center flex-col">
+                <span>{item.name}</span>
+                <span>{item.gender}</span>
+                <span>{item.status}</span>
+                <span>{item.species}</span>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </section>
     </>
