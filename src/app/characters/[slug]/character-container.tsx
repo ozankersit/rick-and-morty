@@ -5,6 +5,7 @@ import { useState } from "react";
 import SelectedCharacterContainer from "./selected-character-container";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import StatusRow from "@/components/status-row";
 
 type Props = {
   characters: Character[];
@@ -55,7 +56,7 @@ export default function CharacterContainer({ characters }: Props) {
               <div className="flex items-start justify-center flex-col">
                 <span>{item.name}</span>
                 <span>{item.gender}</span>
-                <span>{item.status}</span>
+                <StatusRow status={item.status}/>
                 <span>{item.species}</span>
               </div>
             </div>

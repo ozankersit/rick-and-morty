@@ -1,3 +1,4 @@
+import StatusRow from "@/components/status-row";
 import { Character } from "@/libs/types";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
@@ -22,7 +23,7 @@ export default function SelectedCharacterContainer({selectedCharacter, closeModa
               <div className="flex item-start justify-center flex-col">
                 <span>{selectedCharacter.name}</span>
                 <span>{selectedCharacter.gender}</span>
-                <span>{selectedCharacter.status}</span>
+                <StatusRow status={selectedCharacter.status}/>
               </div>
             </div>
           </div>

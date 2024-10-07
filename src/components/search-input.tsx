@@ -8,8 +8,6 @@ export default function SearchInput() {
   const { replace } = useRouter();
   const timeoutRef = useRef<any>(null);
   const [isLoading, setIsLoading] = useState(false);
-  console.log("searchParams", searchParams);
-  console.log("pathname", pathname);
 
   const handleChange = (term: string) => {
     if (timeoutRef.current !== null) {
