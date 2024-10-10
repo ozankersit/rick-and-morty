@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import NavigateButtons from "./navigate-buttons";
 
 type Props = {
   params: number;
@@ -18,24 +19,34 @@ export default function PaginationButtons({ params, pageCount }: Props) {
     );
   };
 
-  const pageLinkClass = (page: number) =>
-    pathname === `/characters/${page}` ? "border px-3 py-1" : " ";
-
   return (
     <div className="flex items-center justify-center gap-5">
-      {createPageLink(1, "First Page", params === 1)}
+      <NavigateButtons
+        isDisabled={params === 1}
+        content="First Page"
+        page={1}
+      />
 
       <div className="flex items-center gap-5">
         {params > 1 ? (
           <Link href={(params - 1).toString()}>{params - 1}</Link>
         ) : null}
-        <span className={pageLinkClass(params)}>{params}</span>
+        <span
+          className={`${
+            pathname === `/characters/${params}` ? "border px-3 py-1" : " "
+          }`}
+        >
+          {params}
+        </span>
         {params < pageCount ? (
           <Link href={(params + 1).toString()}>{params + 1}</Link>
         ) : null}
       </div>
-
-      {createPageLink(pageCount, "Last Page", params === pageCount)}
+      <NavigateButtons
+        isDisabled={params === pageCount}
+        content="Last Page"
+        page={pageCount}
+      />
     </div>
   );
 }

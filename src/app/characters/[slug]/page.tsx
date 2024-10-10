@@ -1,9 +1,9 @@
-import PaginationButtons from "@/components/pagination-buttons";
 import { SERVICE_URL } from "@/constants/service";
 import { CharactersResponse } from "@/libs/types";
 import { notFound } from "next/navigation";
 import CharacterContainer from "./character-container";
 import SearchInput from "@/components/search-input";
+import PaginationButtons from "@/components/pagination-buttons/pagination-buttons";
 
 async function fetchCharacters(slug: string): Promise<CharactersResponse> {
   const res = await fetch(`${SERVICE_URL}/character/?page=${slug}`, {
