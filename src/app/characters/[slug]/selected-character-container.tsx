@@ -1,5 +1,5 @@
 import StatusRow from "@/components/status-row";
-import { Character } from "@/libs/types";
+import { Character } from "@/lib/types";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 

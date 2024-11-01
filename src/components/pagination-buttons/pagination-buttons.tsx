@@ -11,14 +11,6 @@ type Props = {
 export default function PaginationButtons({ params, pageCount }: Props) {
   const pathname = usePathname();
 
-  const createPageLink = (page: number, label: string, isDisabled: boolean) => {
-    return isDisabled ? (
-      <span className="opacity-55 cursor-pointer">{label}</span>
-    ) : (
-      <Link href={`/characters/${page}`}>{label}</Link>
-    );
-  };
-
   return (
     <div className="flex items-center justify-center gap-5">
       <NavigateButtons

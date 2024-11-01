@@ -1,5 +1,5 @@
 "use client";
-import { Character } from "@/libs/types";
+import { Character } from "@/lib/types";
 import Image from "next/image";
 import { useState } from "react";
 import SelectedCharacterContainer from "./selected-character-container";

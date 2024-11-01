@@ -1,5 +1,5 @@
 import { SERVICE_URL } from "@/constants/service";
-import { CharactersResponse } from "@/libs/types";
+import { CharactersResponse } from "@/lib/types";
 import { notFound } from "next/navigation";
 import CharacterContainer from "./character-container";
 import SearchInput from "@/components/search-input";
