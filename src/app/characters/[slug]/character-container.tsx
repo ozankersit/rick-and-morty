@@ -39,7 +39,7 @@ export default function CharacterContainer({ characters }: Props) {
         />
       ) : null}
 
-      <section className="grid lg:grid-cols-4 md:grid-cols-2 gap-y-8 gap-6">
+      <section className="grid lg:grid-cols-4 md:grid-cols-2 gap-y-8 gap-6 py-5 lg:px-0">
         {filteredCharacters.map((item) => (
           <Link href="#selected-character" key={item.id}>
             <div

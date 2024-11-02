@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} relative`}
+        className={`${inter.className} relative lg:px-0 px-4`}
       >
         <BackgroundMusic/>
         {children}

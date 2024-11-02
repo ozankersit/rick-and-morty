@@ -32,6 +32,7 @@ export default function SearchInput() {
         type="text"
         id="search"
         name="search"
+        className="focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500 rounded-xl border border-green-500 px-4 py-2"
         placeholder="Search a character"
         defaultValue={searchParams.get("search_query")?.toString()}
         onChange={(e) => {

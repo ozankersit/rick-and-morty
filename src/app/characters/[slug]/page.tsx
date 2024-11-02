@@ -31,7 +31,7 @@ export default async function Characters({
   }
   return (
     <section className="container mx-auto">
-      <div className="flex items-center justify-between flex-wrap">
+      <div className="flex items-center justify-between flex-wrap pt-5">
         <SearchInput />
         <PaginationButtons params={+params.slug} pageCount={pageCount} />
       </div>
